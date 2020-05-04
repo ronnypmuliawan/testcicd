@@ -9,6 +9,6 @@ phases:
       - echo Build started on `date`
       - dotnet publish -c release -o ./build_output TestCICDApp/TestCICDApp.csproj
 artifacts:
+  base-directory: 'build_output'
   files:
-    - ./build_output/*
-    - appspec.yml
+    - *
