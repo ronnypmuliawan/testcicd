@@ -10,5 +10,5 @@ phases:
       - dotnet publish -c release -o ./build_output TestCICDApp/TestCICDApp.csproj
 artifacts:
   files:
-    - ./build_output/**/*
+    - ./build_output/*
     - appspec.yml
