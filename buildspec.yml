@@ -1,0 +1,14 @@
+version: 0.2
+phases:
+  pre_build:
+    commands:
+      - echo Restore started on `date`
+      - dotnet restore TestCICDApp/TestCICDApp.csproj
+  build:
+    commands:
+      - echo Build started on `date`
+      - dotnet publish -c release -o ./build_output TestCICDApp/TestCICDApp.csproj
+artifacts:
+  files:
+    - ./build_output/**/*
+    - appspec.yml
