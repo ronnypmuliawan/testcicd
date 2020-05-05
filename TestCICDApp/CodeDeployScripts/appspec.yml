@@ -1,0 +1,10 @@
+version: 0.0
+os: linux
+files:
+  - source: '**/*'
+    destination: '/var/home/ubuntu/test'
+hooks:
+  AfterInstall:
+    - location: CodeDeployScripts/restart.sh
+      timeout: 300
+      runas: root
