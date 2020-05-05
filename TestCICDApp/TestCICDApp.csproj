@@ -5,10 +5,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="CodeDeployScripts\appspec.yml" />
+    <None Remove="CodeDeployScripts\restart.sh" />
     <None Remove="TestFile\test.txt" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="appspec.yml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeDeployScripts\restart.sh">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="TestFile\test.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
