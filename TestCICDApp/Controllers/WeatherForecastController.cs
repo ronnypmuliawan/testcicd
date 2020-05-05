@@ -41,5 +41,11 @@ namespace TestCICDApp.Controllers
         {
             return Content("test from test method");
         }
+
+        [HttpGet("test2")]
+        public IActionResult Test2()
+        {
+            return Content("test 2");
+        }
     }
 }
