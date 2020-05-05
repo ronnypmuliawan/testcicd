@@ -35,5 +35,11 @@ namespace TestCICDApp.Controllers
             })
             .ToArray();
         }
+
+        [HttpGet("test")]
+        public IActionResult Test()
+        {
+            return Content("test from test method");
+        }
     }
 }
