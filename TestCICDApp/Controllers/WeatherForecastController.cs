@@ -6,6 +6,7 @@ using Amazon.S3;
 using Amazon.S3.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using TestCICDApp.Configurations;
 
 namespace TestCICDApp.Controllers
 {
@@ -14,6 +15,7 @@ namespace TestCICDApp.Controllers
     public class WeatherForecastController : ControllerBase
     {
         private readonly IAmazonS3 _client;
+        private readonly CustomSettings _settings;
 
         private static readonly string[] Summaries = new[]
         {
@@ -22,10 +24,11 @@ namespace TestCICDApp.Controllers
 
         private readonly ILogger<WeatherForecastController> _logger;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger, IAmazonS3 client)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, IAmazonS3 client, CustomSettings settings)
         {
             _logger = logger;
             _client = client;
+            _settings = settings;
         }
 
         [HttpGet]
@@ -78,6 +81,13 @@ namespace TestCICDApp.Controllers
                 _logger.LogError(e, e.Message);
                 throw new ArgumentException($"An exception occured when retrieving object from AWS S3 with key name: {key}");
             }
+        }
+
+        // test the configuration management
+        [HttpGet("configtest")]
+        public async Task<IActionResult> ConfigTest()
+        {
+            return Content($"Setting1: {_settings.Setting1}, Setting2: {_settings.Setting2}");
         }
     }
 }

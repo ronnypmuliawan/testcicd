@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using TestCICDApp.Configurations;
 
 namespace TestCICDApp
 {
@@ -29,6 +30,8 @@ namespace TestCICDApp
             services.AddControllers();
             services.AddDefaultAWSOptions(Configuration.GetAWSOptions());
             services.AddAWSService<IAmazonS3>();
+            var testConfig = Configuration.GetSection(nameof(CustomSettings)).Get<CustomSettings>();
+            services.AddSingleton(typeof(CustomSettings), testConfig);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
